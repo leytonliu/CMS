@@ -60,4 +60,10 @@ export default [
     layout: false,
     component: './404',
   },
+  {
+    name: '页面装修',
+    path: '/cms/decorate',
+    layout: false,
+    component: './CMS/Decorate',
+  },
 ];
