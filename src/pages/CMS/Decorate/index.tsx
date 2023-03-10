@@ -3,11 +3,13 @@ import { Layout, SiderProps } from 'antd';
 import ComponentList from '@/pages/CMS/Decorate/components/ComponentList';
 import PageConfig from '@/pages/CMS/Decorate/components/PageConfig';
 import Preview from '@/pages/CMS/Decorate/components/Preview';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const { Header, Content, Sider } = Layout;
 
 const leftSiderProps: SiderProps = {
-  collapsible: true,
+  collapsible: false,
   width: 300,
   theme: 'light',
   style: {
@@ -16,7 +18,7 @@ const leftSiderProps: SiderProps = {
 };
 
 const rightSiderProps: SiderProps = {
-  collapsible: true,
+  collapsible: false,
   width: 400,
   theme: 'light',
   reverseArrow: true,
@@ -27,17 +29,21 @@ const Decorate: React.FC = () => {
   return (
     <>
       <Layout>
-        <Header>CMS页面装修</Header>
+        <Header>
+          <div style={{ color: 'white' }}>CMS页面装修</div>
+        </Header>
         <Layout>
-          <Sider {...leftSiderProps}>
-            <ComponentList />
-          </Sider>
-          <Content>
-            <Preview />
-          </Content>
-          <Sider {...rightSiderProps}>
-            <PageConfig />
-          </Sider>
+          <DndProvider backend={HTML5Backend}>
+            <Sider {...leftSiderProps}>
+              <ComponentList />
+            </Sider>
+            <Content>
+              <Preview />
+            </Content>
+            <Sider {...rightSiderProps}>
+              <PageConfig />
+            </Sider>
+          </DndProvider>
         </Layout>
       </Layout>
     </>
